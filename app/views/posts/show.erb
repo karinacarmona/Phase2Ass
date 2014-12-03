@@ -16,7 +16,7 @@
 
   <%=@post.content%><br>
 
-  <h4>Additional Resources</h4><br>
+  <h4>Additional Resources</h4>
   <ol class= "resources">
   <%resources= Resource.where(post_id: @post.id)%>
     <%resources.each do |resource|%>
