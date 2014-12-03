@@ -588,5 +588,8 @@ input[type="submit"]:hover {
   color:#777777;
   padding: 20px;
   margin: 10px 0px 0px 120px;
+}
 
+.tags {
+  float: right;
 }

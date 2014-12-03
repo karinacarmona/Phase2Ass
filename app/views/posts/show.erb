@@ -1,11 +1,27 @@
-<header class="vs-header">
+<a href="/"><header class="vs-header">
   <div id="small-header" class="small-header">
     <!-- <canvas id="demo-canvas"></canvas> -->
     <h1 class="small-title">SNOT | TONS</h1>
   </div>
-</header>
+</header></a>
+
+
 
 <div class='wrapper'>
+
+  <div class="tags">
+    <%tags=[]%>
+    <%PostTag.where(post_id: @post.id).each do |pt|%>
+    <%tag = Tag.where(id: pt.tag_id)%>
+    <%tag.each do |tag|%>
+      <%tags << tag.name%>
+    <%end%>
+
+    <%end%>
+    <h6>tags: <%=tags.join(", ")%></h6>
+
+  </div>
+
   <h2><%=@post.title%></h2>
 
   <%author= User.find_by(id: @post.user_id)%>
