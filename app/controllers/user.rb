@@ -9,7 +9,7 @@ post '/login' do
 
   if user
     session[:user_id] = user.id
-    redirect("/s")
+    redirect("/")
   else
     set_error("Username not found or password incorrect.")
     redirect("/login")

@@ -1,18 +1,46 @@
-<h2><%=@post.title%></h2>
+<header class="vs-header">
+  <div id="small-header" class="small-header">
+    <!-- <canvas id="demo-canvas"></canvas> -->
+    <h1 class="small-title">SNOT | TONS</h1>
+  </div>
+</header>
 
-<%author= User.find_by(id: @post.user_id)%>
-  <a href='/user/<%=author.id%>'><h4><%=author.name%></h4></a><br>
-  <%if current_user%>
-    <a href='/post/<%=@post.id%>/edit'><button type="button">Edit</button></a>
-  <%end%>
+<div class='wrapper'>
+  <h2><%=@post.title%></h2>
 
-<%=@post.content%><br>
+  <%author= User.find_by(id: @post.user_id)%>
+    <a href='/user/<%=author.id%>'><h4>by <%=author.name%></h4></a><br>
+    <%if current_user%>
+      <a href='/post/<%=@post.id%>/edit'><button type="button">Edit</button></a>
+    <%end%>
 
-Additional Resources<br>
-<%resources= Resource.where(post_id: @post.id)%>
-<%resources.each do |resource|%>
-<a href="<%=resource.resource_url%>"><%=resource.title%></a><br>
-<%end%>
-<br>
-Add Resource
-<form action="/post/<%= @post.id %>" method="POST">
+  <%=@post.content%><br>
+
+  <h4>Additional Resources</h4><br>
+  <ol class= "resources">
+  <%resources= Resource.where(post_id: @post.id)%>
+    <%resources.each do |resource|%>
+      <%if (/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i =~resource.resource_url).nil?%>
+
+      <li><a href="<%=resource.resource_url%>"><%=resource.title%><br></a></li>
+
+      <%else%>
+
+      <li><img class="img" src="<%=resource.resource_url%>" alt="<%=resource.title%>"></li>
+
+      <%end%>
+    <%end%>
+  </ol>
+  <br>
+
+<div class="panel">
+    <h3>Add Resource</h3>
+      <form action="/post/<%=@post.id%>/resource" method="POST">
+        Resource Description:
+        <input name='resource[title]' type = 'text'>
+        Resource URL:
+        <input name='resource[resource_url]' type = 'text'>
+        <input type='submit' value='Add Entry'>
+      </form>
+  </div>
+</div>

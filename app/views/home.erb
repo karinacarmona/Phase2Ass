@@ -1,0 +1,92 @@
+
+<div id="vs-container" class="vs-container">
+  <header class="vs-header">
+    <div id="large-header" class="large-header">
+      <canvas id="demo-canvas"></canvas>
+      <h1 class="main-title">SNOT | TONS</h1>
+    </div>
+
+    <ul class="vs-nav">
+      <li><a href="#section-1">Pick B00g</a></li>
+      <li><a href="#section-2">N3W BOOg3R</a></li>
+      <li><a href="#section-3">Log Your St33ze</a></li>
+      <li><a href="#section-4">Random Pick</a></li>
+      <li><a href="#section-5">SnEEze StEEze</a></li>
+    </ul>
+
+  </header>
+  <div class="vs-wrapper">
+
+<!-- Search -->
+    <section id="section-1">
+      <div class="vs-content">
+        hi
+
+      </div>
+    </section>
+
+    <!-- LIST ALL   -->
+
+    <section id="section-2">
+      <div class="vs-content">
+
+      <div class="table">
+          <% Post.all.each do |post|%>
+          <% user= User.find_by(id: post.user_id)%>
+          <div class="row">
+          <a href='/post/<%=post.id%>'><%=post.title%></a><br>
+            <span class="sub">by <%=user.name%></span><br>
+          </div>
+          <%end%>
+        </div>
+
+        </div>
+      </section>
+
+<!-- Create New POst  -->
+      <section id="section-3" >
+        <div class="vs-content">
+          <form action='/post' method ="POST">
+            Title:<br>
+            <input name='post[title]' type='text'><br>
+            Content: <br>
+            <textarea name='post[content]'></textarea><br>
+            Tags: <br>
+            <input name='tag[name]' type='text'><br>
+            Resource Description:
+            <input name='resource[title]' type = 'text'>
+            Resource URL:
+            <input name='resource[resource_url]' type = 'text'>
+            <input type='submit' value='Add Entry'>
+          </form>
+
+        </div>
+      </section>
+<!-- Random post -->
+      <section id="section-4" >
+        <div class="vs-content">
+          <h2>Section 4</h2>
+
+        </div>
+      </section>
+
+      <section id="section-5">
+        <div class="vs-content">
+          <h2>Section 5</h2>
+        </div>
+      </section>
+
+    </div>
+
+
+
+    <script src="js/classie.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/main.js"></script>
+
+  </div>
+
+  <script src="js/TweenLite.min.js"></script>
+  <script src="js/EasePack.min.js"></script>
+  <script src="js/rAF.js"></script>
+  <script src="js/demo-1.js"></script>

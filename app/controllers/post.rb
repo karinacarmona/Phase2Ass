@@ -29,9 +29,9 @@ end
 #READ ONE / ADD RESOURCE
 get '/post/:id' do
   @post=Post.find(params[:id])
-  if @resource=Resource.create(params[:resource])
-    redirect("/post/#{@post.id}")
-  end
+  # if @resource=Resource.create(params[:resource])
+  #   redirect("/post/#{@post.id}")
+  # end
 
   erb :'/posts/show'
 end
