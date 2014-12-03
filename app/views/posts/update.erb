@@ -1,0 +1,13 @@
+<%= display_error %>
+
+<form action="/post/<%= @post.id %>" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+  Title:<br>
+  <input name="post[title]" type="text" value="<%= @post.title %>"><br>
+  Content:<br>
+  <textarea name="post[content]"><%= @post.content %></textarea><br>
+  <input type="submit" value="Submit your post.">
+  <form action="/post/<%=@post.id %>" class="delete_form" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete">
+</form>

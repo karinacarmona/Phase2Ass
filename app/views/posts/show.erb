@@ -1,0 +1,18 @@
+<h2><%=@post.title%></h2>
+
+<%author= User.find_by(id: @post.user_id)%>
+  <a href='/user/<%=author.id%>'><h4><%=author.name%></h4></a><br>
+  <%if current_user%>
+    <a href='/post/<%=@post.id%>/edit'><button type="button">Edit</button></a>
+  <%end%>
+
+<%=@post.content%><br>
+
+Additional Resources<br>
+<%resources= Resource.where(post_id: @post.id)%>
+<%resources.each do |resource|%>
+<a href="<%=resource.resource_url%>"><%=resource.title%></a><br>
+<%end%>
+<br>
+Add Resource
+<form action="/post/<%= @post.id %>" method="POST">

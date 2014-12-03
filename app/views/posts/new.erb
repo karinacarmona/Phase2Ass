@@ -1,0 +1,14 @@
+<%=display_error%>
+<form action='/post' method ="POST">
+  Title:<br>
+  <input name='post[title]' type='text'><br>
+  Content: <br>
+  <textarea name='post[content]'></textarea><br>
+  Tags: <br>
+  <input name='tag[name]' type='text'><br>
+  Resource Description:
+  <input name='resource[title]' type = 'text'>
+  Resource URL:
+  <input name='resource[resource_url]' type = 'text'>
+  <input type='submit' value='Add Entry'>
+</form>

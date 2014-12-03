@@ -1,0 +1,15 @@
+<table>
+<% Post.all.each do |post|%>
+  <% user= User.find_by(id: post.user_id)%>
+  <tr>
+    <%=post.title%><br>
+  </tr>
+  <tr>
+    <%=post.content%><br>
+  </tr>
+  <tr> by:  <br><%=user.name%><br></tr>
+
+
+
+<%end%>
+</table>
