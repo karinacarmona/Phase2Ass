@@ -28,7 +28,7 @@
     <a href='/user/<%=author.id%>'><h4>by <%=author.name%></h4></a><br>
     <%if current_user%>
       <a href='/post/<%=@post.id%>/edit'><button type="button">Edit</button></a>
-    <%end%>
+    <%end%><br><br>
 
   <%=@post.content%><br>
 
@@ -52,10 +52,10 @@
 <div class="panel">
     <h3>Add Resource</h3>
       <form action="/post/<%=@post.id%>/resource" method="POST">
-        Resource Description:
-        <input name='resource[title]' type = 'text'>
-        Resource URL:
-        <input name='resource[resource_url]' type = 'text'>
+
+        <input name='resource[title]' type = 'text' placeholder='Resource Description'>
+
+        <input name='resource[resource_url]' type = 'text' placeholder='Resource URL'>
         <input type='submit' value='Add Entry'>
       </form>
   </div>

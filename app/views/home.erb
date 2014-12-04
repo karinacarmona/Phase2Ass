@@ -55,15 +55,15 @@
         <div class="vs-content">
           <form action='/post' method ="POST">
             <br>
-            <input name='post[title]' type='text' value='Title'><br>
+            <input name='post[title]' type='text' placeholder='Title'><br>
             <br>
             <textarea name='post[content]' cols="87" rows="20">Content</textarea><br>
             <br>
-            <input name='tag[name]' type='text' value="Tags, Separate, by, Commas"><br>
+            <input name='tag[name]' type='text' placeholder="Tags, Separate, by, Commas"><br>
 
-            <input name='resource[title]' type = 'text' value="Resource Description">
+            <input name='resource[title]' type = 'text' placeholder="Resource Description">
             <br>
-            <input name='resource[resource_url]' type = 'text' value="Resource URL"><br>
+            <input name='resource[resource_url]' type = 'text' placeholder="Resource URL"><br>
             <br><input type='submit' value='Add Entry'>
           </form>
 
@@ -120,10 +120,10 @@
             <div class="panel">
               <h3>Add Resource</h3>
               <form action="/post/<%=rand_id%>/resource" method="POST">
-                Resource Description:
-                <input name='resource[title]' type = 'text'>
-                Resource URL:
-                <input name='resource[resource_url]' type = 'text'>
+
+                <input name='resource[title]' type = 'text' placeholder="Resource Description">
+
+                <input name='resource[resource_url]' type = 'text' placeholder="Resource URL">
                 <input type='submit' value='Add Entry'>
               </form>
             </div>
@@ -143,9 +143,9 @@
 
           <form action="/login" method="POST">
             <br>
-            <input type="text" name="user[name]" value="username"><br>
+            <input type="text" name="user[name]" placeholder="username"><br>
             <br>
-            <input type="password" name="user[password]" value="passwurd"><br>
+            <input type="password" name="user[password]" placeholder="passwurd"><br>
             <br><input type="submit" value="Login!">
           </form>
           <h5><a href="/signup"> or sign up!</a></h5>
