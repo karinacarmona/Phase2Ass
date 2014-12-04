@@ -23,15 +23,21 @@ a:hover {
   color: #893027;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"]{
   padding: 10px;
   border: none;
   border-bottom: solid 2px #c9c9c9;
   transition: border 0.3s;
+  margin-top: 10px;
 }
 input[type="text"]:focus,
 input[type="text"].focus {
   border-bottom: solid 2px #969696;
+}
+
+input[value] {
+  color: gray
 }
 
 textarea {
@@ -54,9 +60,43 @@ textarea {
   background-color: rgb(42,40,38);
 }
 
+
 /*HOMEPAGE*/
+#hello {
+
+  padding: 10px;
+  z-index:2;
+  position: fixed;
+  float: right;
+  text-transform: lowercase;
+  color: white;
+  font-family:Gudea;
+}
+#mikasa a {
+  color: white;
+  font-family: Gudea;
+}
+
+
+#section-5 form{
+  text-align: center;
+}
+
+#section-5 h2, #section-5 h5 {
+  text-align: center;
+}
+
+#section-3 input[type="text"] {
+  width: 626px;
+}
+
+#section-3 .vs-content form{
+text-align: center;
+
+}
 .no-touch .vs-container {
   overflow-x: hidden;
+
 }
 
 .vs-header {
@@ -546,6 +586,15 @@ input[type="submit"]:hover {
   font-family: Gudea;
 }
 
+.wrapper2 {
+  margin: auto;
+  width: 50%;
+  background-color: rgb(252, 252, 252);
+  border: 1px solid white;
+  padding: 20px;
+  border-radius:10px;
+  font-family: Gudea;
+}
 .wrapper ol{
   list-style:none;
 }

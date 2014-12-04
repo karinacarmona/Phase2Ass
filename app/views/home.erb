@@ -1,17 +1,19 @@
 
 <div id="vs-container" class="vs-container">
   <header class="vs-header">
+    <div id ="hello"><%if current_user%>
+    <div id="mikasa">Bless you, </div><%=current_user.name%><%end%></div>
     <div id="large-header" class="large-header">
       <canvas id="demo-canvas"></canvas>
       <h1 class="main-title">SNOT | TONS</h1>
     </div>
 
     <ul class="vs-nav">
-      <li><a href="#section-1">Pick B00g</a></li>
-      <li><a href="#section-2">N3W BOOg3R</a></li>
-      <li><a href="#section-3">Log Your St33ze</a></li>
+      <li><a href="#section-1">Sn33zE</a></li>
+      <li><a href="#section-2">PICK B00G</a></li>
+      <li><a href="#section-3">Log A St33ze</a></li>
       <li><a href="#section-4">Random Pick</a></li>
-      <li><a href="#section-5">SnEEze StEEze</a></li>
+      <li><a href="#section-5">Log IN</a></li>
     </ul>
 
   </header>
@@ -20,8 +22,10 @@
 <!-- Search -->
     <section id="section-1">
       <div class="vs-content">
-        <div class="wrapper">
-
+        <div class="wrapper2">
+          <p>Welcome to SnottonS! <br> <br>
+            So pretty much what this is IS to compile resources and references for social justice topics (or arguments). <br>
+            <br>Always show love in your posts. Random Latin and Tech Speak allowed. </p></p>
 
         </div>
       </div>
@@ -49,17 +53,17 @@
       <section id="section-3" >
         <div class="vs-content">
           <form action='/post' method ="POST">
-            Title:<br>
-            <input name='post[title]' type='text'><br>
-            Content: <br>
-            <textarea name='post[content]'></textarea><br>
-            Tags: <br>
-            <input name='tag[name]' type='text'><br>
-            Resource Description:
-            <input name='resource[title]' type = 'text'>
-            Resource URL:
-            <input name='resource[resource_url]' type = 'text'>
-            <input type='submit' value='Add Entry'>
+            <br>
+            <input name='post[title]' type='text' value='Title'><br>
+            <br>
+            <textarea name='post[content]' cols="87" rows="20">Content</textarea><br>
+            <br>
+            <input name='tag[name]' type='text' value="Tags, Separate, by, Commas"><br>
+
+            <input name='resource[title]' type = 'text' value="Resource Description">
+            <br>
+            <input name='resource[resource_url]' type = 'text' value="Resource URL"><br>
+            <br><input type='submit' value='Add Entry'>
           </form>
 
         </div>
@@ -67,14 +71,84 @@
 <!-- Random post -->
       <section id="section-4" >
         <div class="vs-content">
-          <h2>Section 4</h2>
+          <h3>Check this B00G >></h3>
+          <%rand_id=rand(Post.count)%>
+          <%rand_post= Post.find_by(id: rand_id)%>
+          <div class='wrapper'>
+
+            <div class="tags">
+              <%tags=[]%>
+              <%PostTag.where(post_id: rand_id).each do |pt|%>
+              <%tag = Tag.where(id: pt.tag_id)%>
+              <%tag.each do |tag|%>
+              <%tags << tag.name%>
+              <%end%>
+
+              <%end%>
+              <h6>tags: <%=tags.join(", ")%></h6>
+
+            </div>
+
+            <h2><%=rand_post.title%></h2>
+
+            <%author= User.find_by(id: rand_post.user_id)%>
+            <a href='/user/<%=author.id%>'><h4>by <%=author.name%></h4></a><br>
+            <%if current_user%>
+            <a href='/post/<%=rand_id%>/edit'><button type="button">Edit</button></a>
+            <%end%>
+
+            <%=rand_post.content%><br>
+
+            <h4>Additional Resources</h4>
+            <ol class= "resources">
+              <%resources= Resource.where(post_id: rand_id)%>
+              <%resources.each do |resource|%>
+              <%if (/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i =~resource.resource_url).nil?%>
+
+              <li><a href="<%=resource.resource_url%>"><%=resource.title%><br></a></li>
+
+              <%else%>
+
+              <li><img class="img" src="<%=resource.resource_url%>" alt="<%=resource.title%>"></li>
+
+              <%end%>
+              <%end%>
+            </ol>
+            <br>
+
+            <div class="panel">
+              <h3>Add Resource</h3>
+              <form action="/post/<%=rand_id%>/resource" method="POST">
+                Resource Description:
+                <input name='resource[title]' type = 'text'>
+                Resource URL:
+                <input name='resource[resource_url]' type = 'text'>
+                <input type='submit' value='Add Entry'>
+              </form>
+            </div>
+          </div>
+
+
 
         </div>
       </section>
-
+      
+<!-- LOG IN -->
       <section id="section-5">
         <div class="vs-content">
-          <h2>Section 5</h2>
+          <div class="wrapper2">
+          <h2>Auth-CHOO</h2>
+          <%= display_error %>
+
+          <form action="/login" method="POST">
+            <br>
+            <input type="text" name="user[name]" value="username"><br>
+            <br>
+            <input type="password" name="user[password]" value="passwurd"><br>
+            <br><input type="submit" value="Login!">
+          </form>
+          <h5><a href="/signup"> or sign up!</a></h5>
+        </div>
         </div>
       </section>
 

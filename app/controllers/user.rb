@@ -5,11 +5,11 @@ end
 
 
 post '/login' do
-  user = User.find_by(name: params[:user][:name]).try(:authenticate, params[:user][:password])
+  @user = User.find_by(name: params[:user][:name]).try(:authenticate, params[:user][:password])
 
-  if user
-    session[:user_id] = user.id
-    redirect("/")
+  if @user
+    session[:user_id] = @user.id
+    erb :'auth/_user'
   else
     set_error("Username not found or password incorrect.")
     redirect("/login")
@@ -34,4 +34,10 @@ post '/signup' do
     session[:error] = user.errors.messages
     redirect("/signup")
   end
+end
+
+put '/picture/:id' do
+  @user=User.find(params[:id])
+  @user.update(params[:user])
+
 end
