@@ -51,6 +51,7 @@
 
 <!-- Create New POst  -->
       <section id="section-3" >
+        <%= display_error %>
         <div class="vs-content">
           <form action='/post' method ="POST">
             <br>
@@ -72,7 +73,7 @@
       <section id="section-4" >
         <div class="vs-content">
           <h3>Check this B00G >></h3>
-          <%rand_id=rand(Post.count)%>
+          <%rand_id=rand(1..Post.count)%>
           <%rand_post= Post.find_by(id: rand_id)%>
           <div class='wrapper'>
 
@@ -132,7 +133,7 @@
 
         </div>
       </section>
-      
+
 <!-- LOG IN -->
       <section id="section-5">
         <div class="vs-content">

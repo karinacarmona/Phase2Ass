@@ -10,20 +10,25 @@ get '/post/new' do
 end
 
 post '/post' do
-  @post = Post.create(params[:post])
+  if current_user
+  @post = Post.create(title: params[:post][:title], content: params[:post][:content], user_id: current_user.id)
 
-  if @post.invalid?
-    session[:error] = @post.errors.messages
-    redirect('/posts/new')
-  else
-    tag_array = params[:tag][:name].split(', ')
-    tag_array.each do |tag|
-      @post.tags.create(name: tag)
+
+
+    if @post.invalid?
+      session[:error] = @post.errors.messages
+      redirect('/')
+    else
+      tag_array = params[:tag][:name].split(', ')
+      tag_array.each do |tag|
+        @post.tags.create(name: tag)
+      end
+      @post.resources.create(params[:resource])
+      redirect('/')
     end
-    @post.resources.create(params[:resource])
-    redirect('/posts/all')
+  else
+    redirect('/')
   end
-
 end
 
 #READ ONE / ADD RESOURCE
